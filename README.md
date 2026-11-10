@@ -65,7 +65,9 @@ served from the same origin.
 
 Two images:
 
-- `apps/api/Dockerfile`: the Go API, storing its SQLite database in `/data`.
+- `apps/api/Dockerfile`: the Go API. It runs as a non-root user, so set
+  `DB_PATH` to a file in a writable volume (the Compose file uses
+  `DB_PATH=/data/artemis.db` with `./data/artemis` mounted at `/data`).
 - `apps/web/Dockerfile` (build from the repository root): the built and
   prerendered site served by nginx on port 80.
 
